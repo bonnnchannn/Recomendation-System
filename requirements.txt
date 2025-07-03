@@ -1,0 +1,5 @@
+streamlit>=1.46.1
+scikit-surprise>=1.1.4
+numpy>=1.23.0
+pandas>=1.5.0
+matplotlib>=3.5.0
