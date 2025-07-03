@@ -299,7 +299,7 @@ with tab2:
             st.warning(f"🤷 No movies found for **{genre_input.title()}** genre from **{year_input}**.")
             
             # Show available years for this genre
-            available_years = df[
+            available_years = df[   
                 df["genre"].str.contains(genre_input.lower(), case=False, na=False)
             ]["year"].unique()
             
