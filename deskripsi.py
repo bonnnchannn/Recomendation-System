@@ -5,16 +5,17 @@ conn = sqlite3.connect('netflix.db')  # Ganti dengan nama file database Anda
 cursor = conn.cursor()
 
 # Data film dan genre baru
-film_posterurl_updates = [
-    ('https://media.themoviedb.org/t/p/w600_and_h900_bestv2/leWNtbo3AsAiLIdQ2j5BNCtdFQ8.jpg', 'Dua Hati Biru'),
+
+# Data film yang ingin dihapus
+film_to_delete = [
+    ('Scandal Makers',),
 ]
 
-# Query untuk mengupdate genre film
+# Query untuk menghapus film berdasarkan judul
 cursor.executemany("""
-UPDATE movies
-SET poster_url = ?
+DELETE FROM movies
 WHERE title = ?
-""", film_posterurl_updates)
+""", film_to_delete)
 
 # Menyimpan perubahan
 conn.commit()

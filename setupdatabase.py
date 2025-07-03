@@ -6,7 +6,7 @@ cursor = conn.cursor()
 
 # Data film yang ingin dimasukkan
 film_data = [
-    ('Layangan Putus: The Movie', 'Romance, Drama', 2023, 'Setelah resmi berpisah dari Aris, Kinan memulai perjalanan penemuan jati diri, menghadapi tantangan menjadi single parent sambil melanjutkan perannya sebagai dokter yang berdedikasi.', 'https://media.themoviedb.org/t/p/w600_and_h900_bestv2/kxhqebpoVDye8XDrWsLUpItucv5.jpg'),
+    ('Scandal Makers', 'Comedy', 2023, 'Oscar, seorang penyiar radio dan selebriti yang tiba-tiba didatangi oleh anak beserta cucunya. Sebagai seorang penyiar radio dan selebriti terkenal tentunya ia berusaha membuat citranya harum di depan publik.', 'https://upload.wikimedia.org/wikipedia/id/2/23/Poster_film_Scandal_Makers_%282023%29.jpeg'),
 ]
 
 # Query untuk menambahkan film baru

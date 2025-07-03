@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System - Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', monospace;
+            background: #f5f5f5;
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .wireframe-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border: 2px solid #333;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: white;
+            color: #333;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 2px solid #333;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            font-weight: normal;
+        }
+        
+        .controls-section {
+            padding: 30px;
+            background: white;
+            border-bottom: 2px solid #333;
+        }
+        
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .control-group {
+            background: white;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        
+        .control-group label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+        
+        .control-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            font-size: 1em;
+            background: white;
+            color: #333;
+        }
+        
+        .control-group select:focus {
+            outline: 2px solid #333;
+        }
+        
+        .slider-container {
+            background: white;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        
+        .slider-container label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            background: #ccc;
+            appearance: none;
+            border: 1px solid #333;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #333;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        
+        .tabs-container {
+            background: white;
+        }
+        
+        .tabs-header {
+            display: flex;
+            border-bottom: 2px solid #333;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border: none;
+            border-right: 1px solid #333;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        .tab-button:last-child {
+            border-right: none;
+        }
+        
+        .tab-button.active {
+            background: #333;
+            color: white;
+        }
+        
+        .tab-content {
+            padding: 30px;
+            min-height: 400px;
+            background: white;
+        }
+        
+        .tab-content.hidden {
+            display: none;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+            font-weight: bold;
+        }
+        
+        .action-button {
+            background: white;
+            color: #333;
+            border: 2px solid #333;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .action-button:hover {
+            background: #333;
+            color: white;
+        }
+        
+        .action-button.secondary {
+            background: #f0f0f0;
+            border: 1px solid #333;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .movie-card {
+            background: white;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 150px;
+            background: repeating-linear-gradient(
+                45deg,
+                #fff,
+                #fff 10px,
+                #f0f0f0 10px,
+                #f0f0f0 20px
+            );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 1.5em;
+            border-bottom: 1px solid #333;
+        }
+        
+        .movie-info {
+            padding: 15px;
+        }
+        
+        .movie-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+        
+        .movie-genre {
+            color: #666;
+            font-style: italic;
+            font-size: 0.85em;
+            margin-bottom: 8px;
+        }
+        
+        .movie-description {
+            color: #666;
+            font-size: 0.8em;
+            line-height: 1.4;
+        }
+        
+        .movies-list {
+            background: #f9f9f9;
+            border: 1px solid #333;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .movie-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #ccc;
+            color: #333;
+        }
+        
+        .movie-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-message {
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-weight: bold;
+            border: 1px solid #333;
+        }
+        
+        .status-success {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .status-warning {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .divider {
+            height: 2px;
+            background: #333;
+            margin: 20px 0;
+        }
+        
+        /* Wireframe annotations */
+        .annotation {
+            position: relative;
+            border: 1px dashed #666;
+            margin: 10px 0;
+            padding: 10px;
+            background: #fafafa;
+        }
+        
+        .annotation::before {
+            content: "[WIREFRAME SECTION]";
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 10px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        /* Grid lines for wireframe feel */
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(to right, #333 1px, transparent 1px),
+                linear-gradient(to bottom, #333 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .controls-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .tabs-header {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                border-right: none;
+                border-bottom: 1px solid #333;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wireframe-container {
+                margin: 0;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-overlay"></div>
+    
+    <div class="wireframe-container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>[HEADER] Movie Recommendation System</h1>
+            <p><strong>Hybrid Filtering System</strong> - Choose your preferences below:</p>
+        </div>
+        
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <div class="annotation">
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label>[DROPDOWN] Select User ID</label>
+                        <select>
+                            <option>user_1</option>
+                            <option>user_2</option>
+                            <option>user_3</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>[DROPDOWN] Select Genre</label>
+                        <select>
+                            <option>action</option>
+                            <option>comedy</option>
+                            <option>drama</option>
+                            <option>romance+comedy</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>[DROPDOWN] Select Release Year</label>
+                        <select>
+                            <option>2023</option>
+                            <option>2022</option>
+                            <option>2021</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="slider-container">
+                    <label>[SLIDER] Number of recommendations to display: <strong>10</strong></label>
+                    <input type="range" class="slider" min="1" max="25" value="10">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Tabs Section -->
+        <div class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-button active" onclick="switchTab(0)">[TAB 1] Get Recommendations</button>
+                <button class="tab-button" onclick="switchTab(1)">[TAB 2] Browse All Movies</button>
+            </div>
+            
+            <!-- Tab 1: Recommendations -->
+            <div class="tab-content" id="tab-0">
+                <h3 class="section-title">[SECTION] Personalized Movie Recommendations</h3>
+                
+                <button class="action-button">[BUTTON] Get My Recommendations</button>
+                
+                <div class="status-message status-success">
+                    [STATUS] Found <strong>10</strong> recommendations:
+                </div>
+                
+                <div class="annotation">
+                    <div class="results-grid">
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 1 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 2 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 3 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 4 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 5 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="divider"></div>
+                
+                <div class="annotation">
+                    <div class="results-grid">
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 6 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 7 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 8 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 9 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                        
+                        <div class="movie-card">
+                            <div class="movie-poster">[IMG]</div>
+                            <div class="movie-info">
+                                <div class="movie-title">[TITLE] Movie Title 10 (2023)</div>
+                                <div class="movie-genre">[GENRE] Action</div>
+                                <div class="movie-description">[DESC] Movie description preview...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab 2: Browse All Movies -->
+            <div class="tab-content hidden" id="tab-1">
+                <h3 class="section-title">[SECTION] Browse All Movies by Genre & Year</h3>
+                
+                <button class="action-button secondary">[BUTTON] Show All Movies</button>
+                
+                <div class="status-message status-success">
+                    [STATUS] Found <strong>25</strong> movies in <strong>Action</strong> genre from <strong>2023</strong>:
+                </div>
+                
+                <div class="annotation">
+                    <div class="movies-list">
+                        <div class="movie-item">[ITEM] <strong>1. Action Movie A</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>2. Action Movie B</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>3. Action Movie C</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>4. Action Movie D</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>5. Action Movie E</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>6. Action Movie F</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>7. Action Movie G</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>8. Action Movie H</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>9. Action Movie I</strong> (2023) - <em>Action</em></div>
+                        <div class="movie-item">[ITEM] <strong>10. Action Movie J</strong> (2023) - <em>Action</em></div>
+                    </div>
+                </div>
+                
+                <div class="status-message status-warning">
+                    [INFO] <strong>Action</strong> movies are available for years: [2023, 2022, 2021, 2020, 2019]
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function switchTab(tabIndex) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => tab.classList.add('hidden'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(`tab-${tabIndex}`).classList.remove('hidden');
+            buttons[tabIndex].classList.add('active');
+        }
+        
+        // Update slider value display
+        const slider = document.querySelector('.slider');
+        const sliderLabel = document.querySelector('.slider-container label strong');
+        
+        slider.addEventListener('input', function() {
+            sliderLabel.textContent = this.value;
+        });
+    </script>
+</body>
+</html>

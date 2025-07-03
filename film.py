@@ -242,14 +242,14 @@ with col3:
     year_input = st.selectbox("📅 Select Release Year", year_list)
 
 # Number of recommendations slider
-top_n = st.slider("📊 Number of recommendations to display", min_value=1, max_value=25, value=10)
+top_n = st.slider("📊 Number of recommendations to display", min_value=1, max_value=5, value=5)
 
 # Create tabs
 tab1, tab2 = st.tabs(["🎯 Get Recommendations", "🎞️ Browse All Movies"])
 
 with tab1:
     st.markdown("### 🎬 Personalized Movie Recommendations")
-    if st.button("🔍 Get My Recommendations", type="primary"):
+    if st.button("🔍 Get Recommendations", type="primary"):
         with st.spinner("Generating recommendations..."):
             recommended_df = hybrid_by_genre(user_input, genre_input, year_input, top_n)
             
